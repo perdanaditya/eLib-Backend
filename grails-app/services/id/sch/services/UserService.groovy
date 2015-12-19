@@ -17,7 +17,9 @@ class UserService {
             email: obj.email,
             pengguna: obj.pengguna,
             photo: obj.photo,
-            status: obj.status
+            active: obj.active,
+            userInput: obj.userInput,
+            inputTime: obj.inputTime
         )
 
         return out.save(failOnError: true)
@@ -32,7 +34,9 @@ class UserService {
             out.email= obj.email
             out.pengguna= obj.pengguna
             out.photo= obj.photo
-            out.status= obj.status
+            out.active= obj.active
+            out.userInput=obj.userInput
+            out.inputTime=obj.inputTime
         }
         return out.save(failOnError: true)
     }

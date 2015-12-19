@@ -1,5 +1,7 @@
 package id.sch.elib.model
 
+import java.sql.Timestamp;
+
 class Buku {
 
     String isbn
@@ -9,6 +11,9 @@ class Buku {
     String tahunTerbit
     Byte[] cover
     RakBuku rakBuku
+    Boolean active
+    String userInput
+    Timestamp inputTime
     
     static belongsTo = [penerbit: Penerbit, rakBuku: RakBuku]
     static hasMany = [peminjaman: Peminjaman]
@@ -22,6 +27,9 @@ class Buku {
         tahunTerbit(blank:true, nullable: false)
         cover(blank:true, nullable: true, maxSize: 65535)
         rakBuku(blank:true, nullable: false)
+        active(blank:true, nullable: false)
+        userInput(blank:true, nullable: false)
+        inputTime(blank:true, nullable: false)
     }
     
     static mapping = {

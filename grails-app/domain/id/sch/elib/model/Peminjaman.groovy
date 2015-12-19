@@ -1,5 +1,7 @@
 package id.sch.elib.model
 
+import java.sql.Timestamp
+
 class Peminjaman implements Serializable{
 
     Buku buku;
@@ -8,6 +10,9 @@ class Peminjaman implements Serializable{
     Integer masaPinjam
     Date tanggalPengembalian
     Integer totalDenda
+    Boolean active
+    String userInput
+    Timestamp inputTime
     
     static belongsTo = [buku: Buku, user:User]
     
@@ -18,6 +23,9 @@ class Peminjaman implements Serializable{
         masaPinjam(blank: true, nullable: false)
         tanggalPengembalian(blank: true, nullable: true)
         totalDenda(blank: true, nullable: false)
+        active(blank:true, nullable: false)
+        userInput(blank:true, nullable: false)
+        inputTime(blank:true, nullable: false)
     }
     
     static mapping = {

@@ -17,7 +17,10 @@ class PeminjamanService {
             tanggalPinjam: obj.tanggalPinjam,
             masaPinjam: obj.masaPinjam,
             tanggalPengembalian: obj.tanggalPengembalian,
-            totalDenda: obj.totalDenda
+            totalDenda: obj.totalDenda,
+            active: obj.active,
+            userInput: obj.userInput,
+            inputTime: obj.inputTime
         )
 
         return out.save(failOnError: true)
@@ -33,6 +36,9 @@ class PeminjamanService {
             out.masaPinjam= obj.masaPinjam
             out.tanggalPengembalian= obj.tanggalPengembalian
             out.totalDenda= obj.totalDenda
+            out.active=obj.active
+            out.userInput=obj.userInput
+            out.inputTime=obj.inputTime
         }
         return out.save(failOnError: true)
     }

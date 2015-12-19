@@ -19,7 +19,9 @@ class PenggunaService {
             tanggalLahir: obj.tanggalLahir,
             jenisKelamin: obj.jenisKelamin,
             alamat: obj.alamat,
-            status: obj.status
+            active: obj.active,
+            userInput: obj.userInput,
+            inputTime: obj.inputTime
         )
 
         return out.save(failOnError: true)
@@ -36,7 +38,9 @@ class PenggunaService {
             out.tanggalLahir = obj.tanggalLahir
             out.jenisKelamin = obj.jenisKelamin
             out.alamat = obj.alamat
-            out.status = obj.status
+            out.active= obj.active
+            out.userInput= obj.userInput
+            out.inputTime= obj.inputTime
         }
         return out.save(failOnError: true)
     }

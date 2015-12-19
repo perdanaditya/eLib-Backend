@@ -18,7 +18,10 @@ class BukuService {
             stock: obj.stock,
             tahunTerbit: obj.tahunTerbit,
             cover: obj.cover,
-            rakBuku: obj.rakBuku
+            rakBuku: obj.rakBuku,
+            active: obj.active,
+            userInput:obj.userInput,
+            inputTime:obj.inputTime
         )
 
         return out.save(failOnError: true)
@@ -35,6 +38,9 @@ class BukuService {
             out.tahunTerbit= obj.tahunTerbit
             out.cover= obj.cover
             out.rakBuku= obj.rakBuku
+            out.active=obj.active
+            out.userInput=obj.userInput
+            out.inputTime=obj.inputTime
         }
         return out.save(failOnError: true)
     }

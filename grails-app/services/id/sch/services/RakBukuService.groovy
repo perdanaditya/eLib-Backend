@@ -12,7 +12,10 @@ class RakBukuService {
     
     boolean save(Object obj) {
         RakBuku out = new RakBuku(
-            namaRak: obj.namaRak
+            namaRak: obj.namaRak,
+            active: obj.active,
+            userInput: obj.userInput,
+            inputTime: obj.inputTime
         )
 
         return out.save(failOnError: true)
@@ -23,6 +26,9 @@ class RakBukuService {
         println "INI UPDATE" + obj.id
         if (out != null) {
             out.namaRak= obj.namaRak
+            out.active=obj.active
+            out.userInput=obj.userInput
+            out.inputTime=obj.inputTime
         }
         return out.save(failOnError: true)
     }

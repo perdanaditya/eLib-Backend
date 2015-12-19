@@ -1,5 +1,7 @@
 package id.sch.elib.model
 
+import java.sql.Timestamp
+
 class Pengguna {
 
     String noInduk
@@ -9,7 +11,9 @@ class Pengguna {
     Date tanggalLahir
     String jenisKelamin
     String alamat
-    String status
+    Boolean active
+    String userInput
+    Timestamp inputTime
     
     static hasOne = [user: User]
     
@@ -21,7 +25,9 @@ class Pengguna {
         tanggalLahir(blank: true, nullable: false)
         jenisKelamin(blank: true, nullable: false)
         alamat(blank: true, nullable: false)
-        status(blank: true, nullable: false)
+        active(blank:true, nullable: false)
+        userInput(blank:true, nullable: false)
+        inputTime(blank:true, nullable: false)
     }
     
     static mapping = {

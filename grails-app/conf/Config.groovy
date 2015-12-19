@@ -117,4 +117,31 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+    		   
+   def logLayoutPattern = new PatternLayout("%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] [%t] %l - %m%n")
+   def logLayoutPattern2 = new PatternLayout("%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n")
+		   
+   appenders {
+	   console name:"stdout", layout: logLayoutPattern2
+			   
+	   appender new DailyRollingFileAppender(name:'file', file:"logs/app.log", datePattern:"'.'yyyy-MM-dd", layout:logLayoutPattern2)
+		   
+   //		appender new org.graylog2.log.GelfAppender(
+   //			name:"graylog",
+   //			graylogHost:"tcp:localhost",
+   //			graylogPort:12201,
+   //			extractStacktrace: true,
+   //			addExtendedInformation: true,
+   //			facility: "gelf-java",
+   ////			additionalFields: "{'runtime': 'grails', 'environment': 'dev', 'transport': 'gelf-java'}",
+   //			layout: logLayoutPattern
+   //		)
+   }
+   root {
+	   error 'stdout','file'
+   }
 }
+
+//url dbconsole
+grails.dbconsole.enabled = true
+grails.dbconsole.urlRoot = '/admin/dbconsole'

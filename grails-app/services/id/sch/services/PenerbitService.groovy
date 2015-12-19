@@ -2,6 +2,8 @@ package id.sch.services
 
 import grails.transaction.Transactional
 import id.sch.elib.model.Penerbit
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
 
 @Transactional
 class PenerbitService {
@@ -15,8 +17,12 @@ class PenerbitService {
             namaPenerbit: obj.namaPenerbit,
             alamatPenerbit: obj.alamatPenerbit,
             kotaPenerbit: obj.kotaPenerbit,
-            telponPenerbit: obj.telponPenerbit
+            telponPenerbit: obj.telponPenerbit,
+            active: obj.active,
+            userInput: obj.userInput,
+            inputTime: obj.inputTime
         )
+        out.inputTime = new Timestamp(new java.util.Date().getTime())
 
         return out.save(failOnError: true)
     }
@@ -29,6 +35,10 @@ class PenerbitService {
             out.alamatPenerbit= obj.alamatPenerbit
             out.kotaPenerbit= obj.kotaPenerbit
             out.telponPenerbit= obj.telponPenerbit
+            out.active=obj.active
+            out.userInput=obj.userInput
+            //            out.inputTime=obj.inputTime
+            out.inputTime = new Timestamp(new java.util.Date().getTime())
         }
         return out.save(failOnError: true)
     }
