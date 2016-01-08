@@ -2,6 +2,9 @@ package id.sch.services
 
 import grails.transaction.Transactional
 import id.sch.elib.model.Buku
+import id.sch.elib.model.Penerbit
+import id.sch.elib.model.RakBuku
+import java.sql.Timestamp
 
 @Transactional
 class BukuService {
@@ -24,6 +27,7 @@ class BukuService {
             inputTime:obj.inputTime
         )
 
+        out.inputTime = new Timestamp(new java.util.Date().getTime())
         return out.save(failOnError: true)
     }
     
@@ -32,15 +36,15 @@ class BukuService {
         println "INI UPDATE" + obj.id
         if (out != null) {
             out.isbn= obj.isbn
-            out.penerbit= obj.penerbit
+            out.penerbit= Penerbit.get(obj.penerbit.id)
             out.judul= obj.judul
             out.stock= obj.stock
             out.tahunTerbit= obj.tahunTerbit
             out.cover= obj.cover
-            out.rakBuku= obj.rakBuku
+            out.rakBuku= RakBuku.get(obj.rakBuku.id)
             out.active=obj.active
             out.userInput=obj.userInput
-            out.inputTime=obj.inputTime
+            out.inputTime = new Timestamp(new java.util.Date().getTime())
         }
         return out.save(failOnError: true)
     }

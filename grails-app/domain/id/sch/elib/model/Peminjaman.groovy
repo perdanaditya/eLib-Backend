@@ -14,7 +14,8 @@ class Peminjaman implements Serializable{
     String userInput
     Timestamp inputTime
     
-    static belongsTo = [buku: Buku, user:User]
+    static belongsTo = [user:User]
+    static hasMany = [buku: Buku]
     
     static constraints = {
         buku(blank: true, nullable: false)
@@ -22,13 +23,13 @@ class Peminjaman implements Serializable{
         tanggalPinjam(blank: true, nullable: false)
         masaPinjam(blank: true, nullable: false)
         tanggalPengembalian(blank: true, nullable: true)
-        totalDenda(blank: true, nullable: false)
+        totalDenda(blank: true, nullable: true)
         active(blank:true, nullable: false)
         userInput(blank:true, nullable: false)
         inputTime(blank:true, nullable: false)
     }
     
     static mapping = {
-        id composite: ["buku", "user"]
+        id column: "userId"
     }
 }

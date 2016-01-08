@@ -2,6 +2,7 @@ package id.sch.services
 
 import grails.transaction.Transactional
 import id.sch.elib.model.RakBuku
+import java.sql.Timestamp
 
 @Transactional
 class RakBukuService {
@@ -18,6 +19,7 @@ class RakBukuService {
             inputTime: obj.inputTime
         )
 
+        out.inputTime = new Timestamp(new java.util.Date().getTime())
         return out.save(failOnError: true)
     }
     
@@ -28,7 +30,7 @@ class RakBukuService {
             out.namaRak= obj.namaRak
             out.active=obj.active
             out.userInput=obj.userInput
-            out.inputTime=obj.inputTime
+            out.inputTime = new Timestamp(new java.util.Date().getTime())
         }
         return out.save(failOnError: true)
     }

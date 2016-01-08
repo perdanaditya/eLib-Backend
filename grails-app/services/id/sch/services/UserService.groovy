@@ -2,6 +2,7 @@ package id.sch.services
 
 import grails.transaction.Transactional
 import id.sch.elib.model.User
+import java.sql.Timestamp
 
 @Transactional
 class UserService {
@@ -16,12 +17,12 @@ class UserService {
             password: obj.password,
             email: obj.email,
             pengguna: obj.pengguna,
-            photo: obj.photo,
             active: obj.active,
             userInput: obj.userInput,
             inputTime: obj.inputTime
         )
 
+        out.inputTime = new Timestamp(new java.util.Date().getTime())
         return out.save(failOnError: true)
     }
     
@@ -33,10 +34,9 @@ class UserService {
             out.password= obj.password
             out.email= obj.email
             out.pengguna= obj.pengguna
-            out.photo= obj.photo
             out.active= obj.active
             out.userInput=obj.userInput
-            out.inputTime=obj.inputTime
+            out.inputTime = new Timestamp(new java.util.Date().getTime())
         }
         return out.save(failOnError: true)
     }

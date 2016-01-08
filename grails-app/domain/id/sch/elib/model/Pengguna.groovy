@@ -10,12 +10,13 @@ class Pengguna {
     String tempatLahir
     Date tanggalLahir
     String jenisKelamin
+    Byte[] photo
     String alamat
     Boolean active
     String userInput
     Timestamp inputTime
     
-    static hasOne = [user: User]
+//    static hasOne = [user: User]
     
     static constraints = {
         noInduk(blank: true, nullable: false)
@@ -24,6 +25,7 @@ class Pengguna {
         tempatLahir(blank: true, nullable: false)
         tanggalLahir(blank: true, nullable: false)
         jenisKelamin(blank: true, nullable: false)
+        photo(blank: true, nullable: true)
         alamat(blank: true, nullable: false)
         active(blank:true, nullable: false)
         userInput(blank:true, nullable: false)

@@ -16,8 +16,7 @@ class Buku {
     Timestamp inputTime
     
     static belongsTo = [penerbit: Penerbit, rakBuku: RakBuku]
-    static hasMany = [peminjaman: Peminjaman]
-    static hasOne = [rating: Rating]
+//    static hasOne = []
     
     static constraints = {
         isbn(unique:true, blank:true, nullable: false)
@@ -25,7 +24,7 @@ class Buku {
         judul(blank:true, nullable: false)
         stock(blank:true, nullable: false)
         tahunTerbit(blank:true, nullable: false)
-        cover(blank:true, nullable: true, maxSize: 65535)
+        cover(blank:true, nullable: true, maxSize: 25000000)
         rakBuku(blank:true, nullable: false)
         active(blank:true, nullable: false)
         userInput(blank:true, nullable: false)
@@ -34,6 +33,6 @@ class Buku {
     
     static mapping = {
         id column: "idBuku"
-        cover(type: "blob")
+        cover(sqlType: "longblob")
     }
 }

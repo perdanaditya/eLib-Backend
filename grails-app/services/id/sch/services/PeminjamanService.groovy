@@ -2,12 +2,13 @@ package id.sch.services
 
 import grails.transaction.Transactional
 import id.sch.elib.model.Peminjaman
+import java.sql.Timestamp
 
 @Transactional
 class PeminjamanService {
 
     def fetchList() {
-        return Buku.findAll()
+        return Peminjaman.findAll()
     }
     
     boolean save(Object obj) {
@@ -23,6 +24,7 @@ class PeminjamanService {
             inputTime: obj.inputTime
         )
 
+        out.inputTime = new Timestamp(new java.util.Date().getTime())
         return out.save(failOnError: true)
     }
     
@@ -38,7 +40,7 @@ class PeminjamanService {
             out.totalDenda= obj.totalDenda
             out.active=obj.active
             out.userInput=obj.userInput
-            out.inputTime=obj.inputTime
+            out.inputTime = new Timestamp(new java.util.Date().getTime())
         }
         return out.save(failOnError: true)
     }

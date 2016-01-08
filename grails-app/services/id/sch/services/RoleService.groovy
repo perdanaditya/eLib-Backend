@@ -2,6 +2,7 @@ package id.sch.services
 
 import grails.transaction.Transactional
 import id.sch.elib.model.Role
+import java.sql.Timestamp
 
 @Transactional
 class RoleService {
@@ -18,6 +19,7 @@ class RoleService {
             inputTime: obj.inputTime
         )
 
+        out.inputTime = new Timestamp(new java.util.Date().getTime())
         return out.save(failOnError: true)
     }
     
@@ -28,7 +30,7 @@ class RoleService {
             out.roleName= obj.roleName
             out.active= obj.active
             out.userInput= obj.userInput
-            out.inputTime=obj.inputTime
+            out.inputTime = new Timestamp(new java.util.Date().getTime())
         }
         return out.save(failOnError: true)
     }

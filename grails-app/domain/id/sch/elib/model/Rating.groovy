@@ -6,7 +6,7 @@ class Rating {
     Integer likeCount
     Integer dislike
     
-    static hasOne = [buku: Buku]
+    static belongsTo = [buku: Buku]
     
     static constraints = {
         buku(blank:true, nullable: false)

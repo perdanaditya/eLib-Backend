@@ -2,6 +2,7 @@ package id.sch.services
 
 import grails.transaction.Transactional
 import id.sch.elib.model.Pengguna
+import java.sql.Timestamp
 
 @Transactional
 class PenggunaService {
@@ -18,12 +19,14 @@ class PenggunaService {
             tempatLahir: obj.tempatLahir,
             tanggalLahir: obj.tanggalLahir,
             jenisKelamin: obj.jenisKelamin,
+            photo: obj.photo,
             alamat: obj.alamat,
             active: obj.active,
             userInput: obj.userInput,
             inputTime: obj.inputTime
         )
 
+        out.inputTime = new Timestamp(new java.util.Date().getTime())
         return out.save(failOnError: true)
     }
     
@@ -37,10 +40,11 @@ class PenggunaService {
             out.tempatLahir = obj.tempatLahir
             out.tanggalLahir = obj.tanggalLahir
             out.jenisKelamin = obj.jenisKelamin
+            out.photo= obj.photo
             out.alamat = obj.alamat
             out.active= obj.active
             out.userInput= obj.userInput
-            out.inputTime= obj.inputTime
+            out.inputTime = new Timestamp(new java.util.Date().getTime())
         }
         return out.save(failOnError: true)
     }
