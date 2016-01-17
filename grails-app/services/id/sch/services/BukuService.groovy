@@ -6,11 +6,62 @@ import id.sch.elib.model.Penerbit
 import id.sch.elib.model.RakBuku
 import java.sql.Timestamp
 
+import javax.persistence.criteria.CriteriaBuilder;
+import org.hibernate.criterion.CriteriaSpecification;
+
 @Transactional
 class BukuService {
 
     def fetchList() {
-        return Buku.findAll()
+        def c = Buku.createCriteria()
+        def selected = c.list{
+            resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
+//            createAlias "buku","b"
+//                
+//            if (params.status){
+//                ilike("status",'%'+params.status+'%')
+//            }
+//            if (params.penerimaan){
+//                eq("p.id", params.penerimaan.toLong())
+//            }
+//                
+            projections{
+                groupProperty("id","id")
+                groupProperty("isbn","isbn")
+                groupProperty("penerbit","penerbit")
+                groupProperty("judul","judul")
+                groupProperty("stock","stock")
+                groupProperty("tahunTerbit","tahunTerbit")
+                groupProperty("cover","cover")
+                groupProperty("rakBuku","rakBuku")
+                groupProperty("active","active")
+                groupProperty("userInput","userInput")
+                groupProperty("inputTime","inputTime")
+            }
+                
+        }
+        def renderSelected = selected.collect{
+            [
+                id : it.id,
+                isbn : it.isbn,
+                penerbit : [
+                    id : it.penerbit.id,
+                    namaPenerbit : it.penerbit.namaPenerbit
+                ],
+                judul : it.judul,
+                stock : it.stock,
+                tahunTerbit : it.tahunTerbit,
+                cover : it.cover,
+                rakBuku : [
+                    id : it.rakBuku.id,
+                    namaRak : it.rakBuku.namaRak
+                ],
+                active : it.active,
+                userInput : it.userInput,
+                inputTime : it.inputTime,
+            ]
+        }
+        return renderSelected
     }
     
     boolean save(Object obj) {
