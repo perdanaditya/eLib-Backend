@@ -14,6 +14,7 @@ class RakBukuService {
     boolean save(Object obj) {
         RakBuku out = new RakBuku(
             namaRak: obj.namaRak,
+            noDdc: obj.noDdc,
             active: obj.active,
             userInput: obj.userInput,
             inputTime: obj.inputTime
@@ -28,6 +29,7 @@ class RakBukuService {
         println "INI UPDATE" + obj.id
         if (out != null) {
             out.namaRak= obj.namaRak
+            out.noDdc=obj.noDdc
             out.active=obj.active
             out.userInput=obj.userInput
             out.inputTime = new Timestamp(new java.util.Date().getTime())

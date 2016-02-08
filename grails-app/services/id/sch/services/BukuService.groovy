@@ -54,7 +54,8 @@ class BukuService {
                 cover : it.cover,
                 rakBuku : [
                     id : it.rakBuku.id,
-                    namaRak : it.rakBuku.namaRak
+                    namaJenis : it.rakBuku.namaJenis,
+                    noDdc : it.rakBuku.noDdc
                 ],
                 active : it.active,
                 userInput : it.userInput,

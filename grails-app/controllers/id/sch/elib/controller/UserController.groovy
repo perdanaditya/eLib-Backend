@@ -13,6 +13,10 @@ class UserController {
         render UserService.fetchList() as JSON
     }
 
+    def userDetails(){
+        render UserService.fetchUserDetails() as JSON
+    }
+    
     def save() {
         def output = ["message": "success"]
 

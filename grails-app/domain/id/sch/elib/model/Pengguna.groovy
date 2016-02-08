@@ -7,6 +7,7 @@ class Pengguna {
     String noInduk
     String nama
     String jabatan
+    String kelas
     String tempatLahir
     Date tanggalLahir
     String jenisKelamin
@@ -22,6 +23,7 @@ class Pengguna {
         noInduk(blank: true, nullable: false)
         nama(blank: true, nullable: false)
         jabatan(blank: true, nullable: false)
+        kelas (blank: true, nullable: true)
         tempatLahir(blank: true, nullable: false)
         tanggalLahir(blank: true, nullable: false)
         jenisKelamin(blank: true, nullable: false)

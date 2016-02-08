@@ -39,7 +39,8 @@ class BootStrap {
         Pengguna pengguna1 = new Pengguna(
             noInduk: "noInduk1",
             nama: "namaPengguna1",
-            jabatan: "pegawai",
+            jabatan: "Pegawai",
+            kelas: null,
             tempatLahir: "tempatLahir1",
             tanggalLahir: now,
             jenisKelamin: "Laki - Laki",
@@ -52,7 +53,8 @@ class BootStrap {
         Pengguna pengguna2 = new Pengguna(
             noInduk: "noInduk2",
             nama: "namaPengguna2",
-            jabatan: "siswa",
+            jabatan: "Siswa",
+            kelas: "XI",
             tempatLahir: "tempatLahir2",
             tanggalLahir: now,
             jenisKelamin: "Laki - Laki",
@@ -113,14 +115,16 @@ class BootStrap {
         ).save(flush:true, failOnError:true);
         
         RakBuku rakBuku1 = new RakBuku(
-            namaRak: "rakBuku1",
+            namaJenis: "Ekonomi",
+            noDdc: "002.019",
             active: true,
             userInput: "system",
             inputTime: now
         ).save(flush:true, failOnError:true);
         
         RakBuku rakBuku2 = new RakBuku(
-            namaRak: "rakBuku2",
+            namaJenis: "Biologi",
+            noDdc: "003.011",
             active: true,
             userInput: "system",
             inputTime: now

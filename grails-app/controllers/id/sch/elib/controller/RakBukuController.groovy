@@ -35,8 +35,8 @@ class RakBukuController {
 
     def show() {
         def id = params.id
-        RakBuku penerbit = RakBuku.findById(id.toLong())
+        RakBuku rak = RakBuku.findById(id.toLong())
 
-        render penerbit as JSON
+        render rak as JSON
     }
 }

@@ -12,19 +12,38 @@ class PenggunaService {
     }
     
     boolean save(Object obj) {
-        Pengguna out = new Pengguna(
-            noInduk: obj.noInduk,
-            nama: obj.nama,
-            jabatan: obj.jabatan,
-            tempatLahir: obj.tempatLahir,
-            tanggalLahir: obj.tanggalLahir,
-            jenisKelamin: obj.jenisKelamin,
-            photo: obj.photo,
-            alamat: obj.alamat,
-            active: obj.active,
-            userInput: obj.userInput,
-            inputTime: obj.inputTime
-        )
+        Pengguna out
+        if(obj.kelas!=null){
+            out = new Pengguna(
+                noInduk: obj.noInduk,
+                nama: obj.nama,
+                jabatan: obj.jabatan,
+                kelas: obj.kelas,
+                tempatLahir: obj.tempatLahir,
+                tanggalLahir: obj.tanggalLahir,
+                jenisKelamin: obj.jenisKelamin,
+                photo: obj.photo,
+                alamat: obj.alamat,
+                active: obj.active,
+                userInput: obj.userInput,
+                inputTime: obj.inputTime
+            )
+        }else{
+            out = new Pengguna(
+                noInduk: obj.noInduk,
+                nama: obj.nama,
+                jabatan: obj.jabatan,
+                kelas: obj.kelas,
+                tempatLahir: obj.tempatLahir,
+                tanggalLahir: obj.tanggalLahir,
+                jenisKelamin: obj.jenisKelamin,
+                photo: obj.photo,
+                alamat: obj.alamat,
+                active: obj.active,
+                userInput: obj.userInput,
+                inputTime: obj.inputTime
+            )
+        }
 
         out.inputTime = new Timestamp(new java.util.Date().getTime())
         return out.save(failOnError: true)
