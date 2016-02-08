@@ -4,6 +4,7 @@ import grails.transaction.Transactional
 import id.sch.elib.model.Pengguna
 import id.sch.elib.model.User
 import java.sql.Timestamp
+import java.util.Date;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import org.hibernate.criterion.CriteriaSpecification;
@@ -104,8 +105,12 @@ class UserService {
                 penggunaObj.jabatan= obj.pengguna.jabatan
                 penggunaObj.kelas= obj.pengguna.kelas
                 penggunaObj.tempatLahir= obj.pengguna.tempatLahir
-                def date = Date().parse("dd-MM-yyyy", obj.pengguna.tanggalLahir);
-                penggunaObj.tanggalLahir= date
+                def date = new Date().parse("yyyy-MM-dd HH:mm:ss", obj.pengguna.tanggalLahir);
+                if(date!=null){
+                    penggunaObj.tanggalLahir= date
+                }else{
+                    println "DATE IS NULL"
+                }
                 penggunaObj.jenisKelamin= obj.pengguna.jenisKelamin
                 penggunaObj.photo= obj.pengguna.photo
                 penggunaObj.alamat= obj.pengguna.alamat
@@ -117,7 +122,7 @@ class UserService {
                 out.username= obj.username
                 out.password= obj.password
                 out.email= obj.email
-                out.pengguna= obj.pengguna
+                out.pengguna= penggunaObj
                 out.active= obj.active
                 out.userInput=obj.userInput
                 out.inputTime = new Timestamp(new java.util.Date().getTime())
