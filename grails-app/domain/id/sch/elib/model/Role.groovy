@@ -12,7 +12,7 @@ class Role {
     static hasMany = [userRole: UserRole]
     
     static constraints = {
-        roleName(blank: true, nullable: false)
+        roleName(unique:true, blank: true, nullable: false)
         active(blank:true, nullable: false)
         userInput(blank:true, nullable: false)
         inputTime(blank:true, nullable: false)
