@@ -8,13 +8,14 @@ import id.sch.elib.model.Rating
 import id.sch.elib.model.Role
 import id.sch.elib.model.User
 import id.sch.elib.model.UserRole
+import id.sch.elib.model.Denda
 import java.sql.Timestamp
 
 class BootStrap {
 
     //Pengguna+Penerbit
     def init = { servletContext ->
-         Timestamp now = new Timestamp(new Date().getTime())
+        Timestamp now = new Timestamp(new Date().getTime())
          
         Penerbit penerbit1 = new Penerbit(
             namaPenerbit: "namaPenerbit1",
@@ -166,11 +167,20 @@ class BootStrap {
             dislike: 35
         ).save(flush:true, failOnError:true);
         
+        Denda denda1 = new Denda(
+            nominal: 3000,
+            tanggal: now,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
         Peminjaman peminjaman1 = new Peminjaman(
             buku: buku1,
             user: user2,
             tanggalPinjam: now,
             masaPinjam: 3,
+            denda: denda1,
             active: true,
             userInput: "system",
             inputTime: now
@@ -181,11 +191,12 @@ class BootStrap {
             user: user2,
             tanggalPinjam: now,
             masaPinjam: 3,
+            denda: denda1,
             active: true,
             userInput: "system",
             inputTime: now
         ).save(flush:true, failOnError:true);
     }
-//    def destroy = {
-//    }
+    //    def destroy = {
+    //    }
 }

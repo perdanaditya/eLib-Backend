@@ -9,12 +9,13 @@ class Peminjaman implements Serializable{
     Date tanggalPinjam
     Integer masaPinjam
     Date tanggalPengembalian
+    Denda denda
     Integer totalDenda
     Boolean active
     String userInput
     Timestamp inputTime
     
-    static belongsTo = [user:User]
+    static belongsTo = [user:User, peminjaman: Peminjaman]
     static hasMany = [buku: Buku]
     
     static constraints = {
@@ -23,6 +24,7 @@ class Peminjaman implements Serializable{
         tanggalPinjam(blank: true, nullable: false)
         masaPinjam(blank: true, nullable: false)
         tanggalPengembalian(blank: true, nullable: true)
+        denda(blank:true, nullable: false)
         totalDenda(blank: true, nullable: true)
         active(blank:true, nullable: false)
         userInput(blank:true, nullable: false)
