@@ -17,7 +17,7 @@ class Pengguna {
     String userInput
     Timestamp inputTime
     
-//    static hasOne = [user: User]
+    static hasMany = [sumberBuku: SumberBuku]
     
     static constraints = {
         noInduk(blank: true, nullable: false)

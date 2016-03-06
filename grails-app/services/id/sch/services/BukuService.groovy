@@ -34,6 +34,7 @@ class BukuService {
                 groupProperty("tahunTerbit","tahunTerbit")
                 groupProperty("cover","cover")
                 groupProperty("rakBuku","rakBuku")
+                groupProperty("masaPinjam","masaPinjam")
                 groupProperty("active","active")
                 groupProperty("userInput","userInput")
                 groupProperty("inputTime","inputTime")
@@ -57,6 +58,7 @@ class BukuService {
                     namaJenis : it.rakBuku.namaJenis,
                     noDdc : it.rakBuku.noDdc
                 ],
+                masaPinjam: it.masaPinjam,
                 active : it.active,
                 userInput : it.userInput,
                 inputTime : it.inputTime,
@@ -74,6 +76,7 @@ class BukuService {
             tahunTerbit: obj.tahunTerbit,
             cover: obj.cover,
             rakBuku: obj.rakBuku,
+            masaPinjam: obj.masaPinjam,
             active: obj.active,
             userInput:obj.userInput,
             inputTime:obj.inputTime
@@ -94,6 +97,7 @@ class BukuService {
             out.tahunTerbit= obj.tahunTerbit
             out.cover= obj.cover
             out.rakBuku= RakBuku.get(obj.rakBuku.id)
+            out.masaPinjam= obj.masaPinjam
             out.active=obj.active
             out.userInput=obj.userInput
             out.inputTime = new Timestamp(new java.util.Date().getTime())

@@ -2,13 +2,17 @@
 import id.sch.elib.model.Buku
 import id.sch.elib.model.Peminjaman
 import id.sch.elib.model.Penerbit
+import id.sch.elib.model.Pengarang
 import id.sch.elib.model.Pengguna
 import id.sch.elib.model.RakBuku
 import id.sch.elib.model.Rating
 import id.sch.elib.model.Role
+import id.sch.elib.model.SumberBuku
 import id.sch.elib.model.User
 import id.sch.elib.model.UserRole
 import id.sch.elib.model.Denda
+import id.sch.elib.model.DetailPeminjaman
+import id.sch.elib.model.DetailPengarang
 import java.sql.Timestamp
 
 class BootStrap {
@@ -138,6 +142,7 @@ class BootStrap {
             stock: 15,
             tahunTerbit: 2015,
             rakBuku: rakBuku1,
+            masaPinjam: 3,
             active: true,
             userInput: "system",
             inputTime: now
@@ -150,6 +155,7 @@ class BootStrap {
             stock: 15,
             tahunTerbit: 2015,
             rakBuku: rakBuku2,
+            masaPinjam: 3,
             active: true,
             userInput: "system",
             inputTime: now
@@ -176,10 +182,8 @@ class BootStrap {
         ).save(flush:true, failOnError:true);
         
         Peminjaman peminjaman1 = new Peminjaman(
-            buku: buku1,
             user: user2,
             tanggalPinjam: now,
-            masaPinjam: 3,
             denda: denda1,
             active: true,
             userInput: "system",
@@ -187,16 +191,117 @@ class BootStrap {
         ).save(flush:true, failOnError:true);
         
         Peminjaman peminjaman2 = new Peminjaman(
-            buku: buku2,
             user: user2,
             tanggalPinjam: now,
-            masaPinjam: 3,
             denda: denda1,
             active: true,
             userInput: "system",
             inputTime: now
         ).save(flush:true, failOnError:true);
+        
+        DetailPeminjaman detailPeminjaman1= new DetailPeminjaman(
+            peminjaman: peminjaman1,
+            buku: buku1,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        DetailPeminjaman detailPeminjaman2= new DetailPeminjaman(
+            peminjaman: peminjaman1,
+            buku: buku2,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        DetailPeminjaman detailPeminjaman3= new DetailPeminjaman(
+            peminjaman: peminjaman2,
+            buku: buku1,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        DetailPeminjaman detailPeminjaman4= new DetailPeminjaman(
+            peminjaman: peminjaman2,
+            buku: buku2,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        Pengarang pengarang1 = new Pengarang(
+            namaPengarang: "namaPengarang1",
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        Pengarang pengarang2 = new Pengarang(
+            namaPengarang: "namaPengarang2",
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        Pengarang pengarang3 = new Pengarang(
+            namaPengarang: "namaPengarang3",
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        Pengarang pengarang4 = new Pengarang(
+            namaPengarang: "namaPengarang4",
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        DetailPengarang detPengarang1 = new DetailPengarang(
+            pengarang: pengarang1,
+            buku: buku1,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        DetailPengarang detPengarang2 = new DetailPengarang(
+            pengarang: pengarang2,
+            buku: buku1,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        DetailPengarang detPengarang3 = new DetailPengarang(
+            pengarang: pengarang1,
+            buku: buku2,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        SumberBuku sumberBuku1 = new SumberBuku(
+            buku: buku1,
+            pengguna: pengguna1,
+            namaPemberi: "",
+            jumlah: 5,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        SumberBuku sumberBuku2 = new SumberBuku(
+            buku: buku2,
+            pengguna: null,
+            namaPemberi: "Udin Soparudin",
+            jumlah: 5,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
     }
-    //    def destroy = {
-    //    }
+    
 }
