@@ -4,6 +4,7 @@ import java.sql.Timestamp
 
 class Peminjaman implements Serializable{
 
+    String noPeminjaman;
     User user;
     Date tanggalPinjam
     Denda denda
@@ -12,10 +13,11 @@ class Peminjaman implements Serializable{
     String userInput
     Timestamp inputTime
     
-    static belongsTo = [user:User]
+    static belongsTo = [user:User, denda: Denda]
     static hasMany = [detailPeminjaman: DetailPeminjaman]
     
     static constraints = {
+        noPeminjaman(unique:true, blank: true, nullable: false)
         user(blank: true, nullable: false)
         tanggalPinjam(blank: true, nullable: false)
         denda(blank:true, nullable: false)
@@ -26,6 +28,6 @@ class Peminjaman implements Serializable{
     }
     
     static mapping = {
-        id column: "userId"
+        id column: "peminjamanId"
     }
 }

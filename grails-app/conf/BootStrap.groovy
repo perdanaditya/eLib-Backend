@@ -69,6 +69,20 @@ class BootStrap {
             inputTime: now
         ).save(flush:true,failOnError:true);
         
+        Pengguna pengguna3 = new Pengguna(
+            noInduk: "1234",
+            nama: "namaPengguna3",
+            jabatan: "Siswa",
+            kelas: "XII",
+            tempatLahir: "tempatLahir3",
+            tanggalLahir: now,
+            jenisKelamin: "Perempuan",
+            alamat: "alamat3",
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true,failOnError:true);
+        
         User user1 = new User(
             username: "admin",
             password: "admin123*",
@@ -84,6 +98,16 @@ class BootStrap {
             password: "user123*",
             email: "user@user.com",
             pengguna: pengguna2,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
+        User user3 = new User(
+            username: "user2",
+            password: "user123*",
+            email: "user@user.com",
+            pengguna: pengguna3,
             active: true,
             userInput: "system",
             inputTime: now
@@ -121,7 +145,7 @@ class BootStrap {
         
         RakBuku rakBuku1 = new RakBuku(
             namaJenis: "Ekonomi",
-            noDdc: "002.019",
+            noDdc: "001.019",
             active: true,
             userInput: "system",
             inputTime: now
@@ -129,7 +153,7 @@ class BootStrap {
         
         RakBuku rakBuku2 = new RakBuku(
             namaJenis: "Biologi",
-            noDdc: "003.011",
+            noDdc: "002.011",
             active: true,
             userInput: "system",
             inputTime: now
@@ -161,6 +185,19 @@ class BootStrap {
             inputTime: now
         ).save(flush:true, failOnError:true);
         
+        Buku buku3 = new Buku(
+            isbn: "1234",
+            penerbit: penerbit2,
+            judul: "judulBuku3",
+            stock: 15,
+            tahunTerbit: 2015,
+            rakBuku: rakBuku2,
+            masaPinjam: 3,
+            active: true,
+            userInput: "system",
+            inputTime: now
+        ).save(flush:true, failOnError:true);
+        
         Rating rating1 = new Rating(
             buku: buku1,
             likeCount: 14,
@@ -182,6 +219,7 @@ class BootStrap {
         ).save(flush:true, failOnError:true);
         
         Peminjaman peminjaman1 = new Peminjaman(
+            noPeminjaman:"noPinjam1",
             user: user2,
             tanggalPinjam: now,
             denda: denda1,
@@ -191,6 +229,7 @@ class BootStrap {
         ).save(flush:true, failOnError:true);
         
         Peminjaman peminjaman2 = new Peminjaman(
+            noPeminjaman: "noPinjam2",
             user: user2,
             tanggalPinjam: now,
             denda: denda1,
@@ -202,6 +241,8 @@ class BootStrap {
         DetailPeminjaman detailPeminjaman1= new DetailPeminjaman(
             peminjaman: peminjaman1,
             buku: buku1,
+            masaPinjam: buku1.masaPinjam,
+            perpanjang:false,
             active: true,
             userInput: "system",
             inputTime: now
@@ -210,6 +251,8 @@ class BootStrap {
         DetailPeminjaman detailPeminjaman2= new DetailPeminjaman(
             peminjaman: peminjaman1,
             buku: buku2,
+            masaPinjam: buku2.masaPinjam,
+            perpanjang:false,
             active: true,
             userInput: "system",
             inputTime: now
@@ -218,6 +261,8 @@ class BootStrap {
         DetailPeminjaman detailPeminjaman3= new DetailPeminjaman(
             peminjaman: peminjaman2,
             buku: buku1,
+            masaPinjam: buku1.masaPinjam,
+            perpanjang:false,
             active: true,
             userInput: "system",
             inputTime: now
@@ -226,6 +271,8 @@ class BootStrap {
         DetailPeminjaman detailPeminjaman4= new DetailPeminjaman(
             peminjaman: peminjaman2,
             buku: buku2,
+            masaPinjam: buku2.masaPinjam,
+            perpanjang:false,
             active: true,
             userInput: "system",
             inputTime: now

@@ -10,6 +10,7 @@ class Denda {
     String userInput
     Timestamp inputTime
     
+    static hasMany = [peminjaman: Peminjaman]
     
     static constraints = {
         nominal(blank:true, nullable: false)

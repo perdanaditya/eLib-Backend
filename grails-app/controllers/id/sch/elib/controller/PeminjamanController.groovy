@@ -39,4 +39,9 @@ class PeminjamanController {
 
         render peminjaman as JSON
     }
+    
+    def fetchDefault(){
+        def pinjam = Peminjaman.findAll()
+        render pinjam as JSON
+    }
 }
