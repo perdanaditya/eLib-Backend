@@ -134,4 +134,13 @@ class UserService {
             return out.save(failOnError: true)
         }
     }
+    
+    def login(Object obj){
+        def user = User.findByUsernameAndPasswordAndActive(obj.username, obj.password, true)
+        if(user){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

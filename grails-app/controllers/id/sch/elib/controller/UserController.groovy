@@ -43,4 +43,13 @@ class UserController {
 
         render user as JSON
     }
+    
+    def login(){
+        def output = ["message": "success"]
+
+        if (!UserService.login(request.JSON)) {
+            output = ["message": "failed"]
+        }
+        render output as JSON
+    }
 }
