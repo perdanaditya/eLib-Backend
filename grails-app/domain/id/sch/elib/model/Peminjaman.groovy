@@ -8,7 +8,7 @@ class Peminjaman implements Serializable{
     User user;
     Date tanggalPinjam
     Denda denda
-    Integer totalDenda
+    BigDecimal totalDenda
     Boolean active
     String userInput
     Timestamp inputTime

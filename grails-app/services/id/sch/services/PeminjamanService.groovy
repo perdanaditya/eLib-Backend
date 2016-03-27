@@ -10,6 +10,7 @@ import id.sch.elib.model.DetailPeminjaman
 import id.sch.elib.model.Buku
 import java.sql.Timestamp
 import java.util.Calendar
+import java.text.SimpleDateFormat;
 
 import org.hibernate.criterion.CriteriaSpecification
 
@@ -101,7 +102,22 @@ class PeminjamanService {
                 detail.each{
                     long bId = it.buku.id
                     //                    println "SEARCH BUKU ID "+bId
-                    def buku = Buku.findAll{id == bId}
+                    //                    def buku = Buku.findAll{id == bId}
+                    def buku = Buku.createCriteria().list{
+                        resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
+                        eq("id",bId)
+                        projections{
+                            groupProperty("id","id")
+                            groupProperty("isbn","isbn")
+                            groupProperty("penerbit","penerbit")
+                            groupProperty("judul","judul")
+                            groupProperty("stock","stock")
+                            groupProperty("tahunTerbit","tahunTerbit")
+                            groupProperty("cover","cover")
+                            groupProperty("rakBuku","rakBuku")
+                            groupProperty("masaPinjam","masaPinjam")
+                        }
+                    }
                     it.put("buku", buku.get(0))
                 }
                 it.put("detailPeminjaman", detail)
@@ -179,80 +195,84 @@ class PeminjamanService {
     
     boolean update(Object obj) {
         def out = Peminjaman.findById(obj.id.toLong())
-        if(out.detailPeminjaman.clear()){//find a way to remove this piece of shit
-            println "INI UPDATE " + obj.id
-            if(obj.noPeminjaman != null){
-                out.noPeminjaman= obj.noPeminjaman
-            }
-            if(obj.user && obj.user.id){
-                out.user= User.get(obj.user.id.toLong())
-            }
-            if(obj.tanggalPinjam){
-                out.tanggalPinjam= Timestamp.valueOf(obj.tanggalPinjam)
-            }
-            if(obj.denda && obj.denda.id){
-                out.denda= Denda.get(obj.denda.id.toLong())
-            }
-            if(obj.totalDenda){
-                out.totalDenda= obj.totalDenda
-            }
-            if(obj.active != null){
-                out.active=obj.active
-            }
-            if (obj != null) {
-                out.userInput=obj.userInput
-                out.inputTime = new Timestamp(new java.util.Date().getTime())
-            }
-            if(out.save(failOnError: true)){
-                //            def oldDetailList = out.detailPeminjaman
-                def detail =obj.detailPeminjaman
-                detail.each{ dp ->
-                    DetailPeminjaman dPeminjaman= new DetailPeminjaman()
-                    if(out != null){
-                        dPeminjaman.peminjaman=out
-                    }
-                    if(dp.buku != null){
-                        dPeminjaman.buku=Buku.get(dp.buku.id.toLong())
-                    }
-                    if(dp.masaPinjam != null){
-                        dPeminjaman.masaPinjam=dp.masaPinjam
-                    }
-                    if(dp.tanggalPengembalian != null){
-                        dPeminjaman.tanggalPengembalian=dp.tanggalPengembalian
-                    }
-                    if(dp.denda != null){
-                        dPeminjaman.denda=dp.denda
-                    }
-                    if(dp.perpanjang != null){
-                        dPeminjaman.perpanjang=dp.perpanjang
-                    }
-                    if(dp.active != null){
-                        dPeminjaman.active=dp.active
-                    }
-                    if(dp.userInput != null){
-                        dPeminjaman.userInput=dp.userInput
-                    }
-                    if(dPeminjaman != null){
-                        dPeminjaman.inputTime=new Timestamp(new java.util.Date().getTime())
-                    }
-                    if(dPeminjaman.save(failOnError: true)){
-                    
-                    }else{
-                        println "============ DETAIL PEMINJAMAN ERROR ============"
-                        println dPeminjaman.errors.allErrors
-                        return false
-                    }
+        //delete old data
+        out.detailPeminjaman.collect().each{
+            out.removeFromDetailPeminjaman(it)
+            it.delete()
+        }
+        //update data peminjaman
+        println "INI UPDATE " + obj.id
+        if(obj.noPeminjaman != null){
+            out.noPeminjaman= obj.noPeminjaman
+        }
+        if(obj.user && obj.user.id){
+            out.user= User.get(obj.user.id.toLong())
+        }
+        if(obj.tanggalPinjam){
+            out.tanggalPinjam= Timestamp.valueOf(obj.tanggalPinjam)
+        }
+        if(obj.denda && obj.denda.id){
+            out.denda= Denda.get(obj.denda.id.toLong())
+        }
+        if(obj.totalDenda){
+            out.totalDenda= obj.totalDenda
+        }
+        if(obj.active != null){
+            out.active=obj.active
+        }
+        if (obj != null) {
+            out.userInput=obj.userInput
+            out.inputTime = new Timestamp(new java.util.Date().getTime())
+        }
+        if(out.save(failOnError: true)){
+            //re-save new data
+            def detail =obj.detailPeminjaman
+            detail.each{ dp ->
+                DetailPeminjaman dPeminjaman= new DetailPeminjaman()
+                if(out != null){
+                    dPeminjaman.peminjaman=out
                 }
-            }else{
-                println "============ PEMINJAMAN ERROR ============"
-                println out.errors.allErrors
-                return false
+                if(dp.buku != null){
+                    dPeminjaman.buku=Buku.get(dp.buku.id.toLong())
+                }
+                if(dp.masaPinjam != null){
+                    dPeminjaman.masaPinjam=dp.masaPinjam
+                }
+                if(dp.tanggalPengembalian != null){
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+                    Date date= df.parse(dp.tanggalPengembalian)
+                    dPeminjaman.tanggalPengembalian=date
+                }
+                if(dp.denda != null){
+                    dPeminjaman.denda=dp.denda
+                }
+                if(dp.perpanjang != null){
+                    dPeminjaman.perpanjang=dp.perpanjang
+                }
+                if(dp.active != null){
+                    dPeminjaman.active=dp.active
+                }
+                if(dp.userInput != null){
+                    dPeminjaman.userInput=dp.userInput
+                }
+                if(dPeminjaman != null){
+                    dPeminjaman.inputTime=new Timestamp(new java.util.Date().getTime())
+                }
+                if(dPeminjaman.save(failOnError: true)){
+                        
+                }else{
+                    println "============ DETAIL PEMINJAMAN ERROR ============"
+                    println dPeminjaman.errors.allErrors
+                    return false
+                }
             }
-            //        return out.save(failOnError: true)
         }else{
-            println "FAILED TO DELETE DETAIL PEMINJAMAN"
+            println "============ PEMINJAMAN ERROR ============"
+            println out.errors.allErrors
             return false
         }
+//            return true//nanti diapus kalo ngetestnya udah selesai
+        //        return out.save(failOnError: true)
         
     }
 }
