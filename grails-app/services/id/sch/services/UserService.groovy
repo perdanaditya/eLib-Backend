@@ -3,6 +3,8 @@ package id.sch.services
 import grails.transaction.Transactional
 import id.sch.elib.model.Pengguna
 import id.sch.elib.model.User
+import id.sch.elib.model.UserRole
+import id.sch.elib.model.Role
 import java.sql.Timestamp
 import java.util.Date;
 
@@ -137,10 +139,84 @@ class UserService {
     
     def login(Object obj){
         def user = User.findByUsernameAndPasswordAndActive(obj.username, obj.password, true)
-        if(user){
-            return true;
-        }else{
-            return false;
+        def renderSelected
+        if (user){
+            def c = User.createCriteria()
+            renderSelected = c.list{
+                resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
+                eq("id",user.id)
+                projections{
+                    groupProperty("id","id")
+                    groupProperty("username","username")
+                    groupProperty("password","password")
+                    groupProperty("email","email")
+                    groupProperty("pengguna","pengguna")
+                    groupProperty("userRole","userRole")
+                    groupProperty("active","active")
+                    groupProperty("userInput","userInput")
+                    groupProperty("inputTime","inputTime")
+                }
+                
+            }
+            if(renderSelected.size>0){
+                renderSelected.each{
+//                    println "USER ID "+it.id
+                    def pId = it.id
+                    def pengguna = Pengguna.createCriteria().list{
+                        resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
+                        eq("id",pId)
+                        projections{
+                            property("id","id")
+                            property("noInduk","noInduk")
+                            property("nama","nama")
+                            property("jabatan","jabatan")
+                            property("kelas","kelas")
+                            property("tempatLahir","tempatLahir")
+                            property("tanggalLahir","tanggalLahir")
+                            property("jenisKelamin","jenisKelamin")
+                            property("photo","photo")
+                            property("alamat","alamat")
+                            property("active","active")
+                        }
+                    }
+                    if(pengguna.size>0){
+                        it.put("pengguna", pengguna.get(0))
+                    }
+                    def userRoleTemp = UserRole.findByUser(user)
+//                    println "USER ROLE ID "+userRoleTemp.id
+                    if(userRoleTemp){
+                        long userRoleId=userRoleTemp.id
+                        def userRole = UserRole.createCriteria().list{
+                            resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
+                            eq("id",userRoleId)
+                            projections{
+                                property("id","id")
+                                property("role","role")
+                                property("active","active")
+                            }
+                        }
+                        userRole.each{
+                            long urId = it.id
+                            def role = Role.createCriteria().list{
+                                createAlias('userRole', 'ur', CriteriaSpecification.LEFT_JOIN)
+                                eq("id",urId)
+                                resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
+                                projections{
+                                    property("id","id")
+                                    property("roleName","roleName")
+                                    property("active","active")
+                                }
+                            }
+                            it.put("role", role.get(0))
+                        }
+                        it.put("userRole", userRole.get(0))
+                    }else{
+                        println "userRoleTemp not found (UserServices: around line 185)"
+                    }
+                }
+            }
+            return renderSelected.get(0) 
         }
+        //        return user;
     }
 }

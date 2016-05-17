@@ -42,7 +42,7 @@ class PeminjamanController {
 
     def show() {
         def id = params.id.toLong()
-//        Peminjaman peminjaman = Peminjaman.findById(id.toLong())
+        //        Peminjaman peminjaman = Peminjaman.findById(id.toLong())
 
         def c = Peminjaman.createCriteria()
         def selected = c.list{
@@ -77,7 +77,9 @@ class PeminjamanController {
                         groupProperty("inputTime","inputTime")
                     }
                 }
-                it.put("denda", denda.get(0))
+                if(denda.size()>0){
+                    it.put("denda", denda.get(0))
+                }
                 
                 long peminjamanId=it.user.id
                 println "USER ID "+peminjamanId
@@ -150,12 +152,30 @@ class PeminjamanController {
                 it.put("detailPeminjaman", detail)
             }
         }
-        render selected as JSON
-        //        render peminjaman as JSON
+        
+        //kalo ada yang error di client pas get id pemminjaman, coba cek block ini
+        def output
+        if(selected.size>0){
+            output = selected.get(0)
+        }
+        
+        render output as JSON
     }
     
     def fetchDefault(){
         def pinjam = Peminjaman.findAll()
         render pinjam as JSON
+    }
+    
+    def fetchPeminjamanByUser(){
+        def id = params.id.toLong()
+        def user = User.findById(id)
+        println "USER ID "+id
+        def peminjaman = Peminjaman.findByUserAndActive(user, true)
+        if(peminjaman){
+            println "PEMINJAMAN ID "+peminjaman.id
+            params.id = peminjaman.id
+            show()
+        }
     }
 }

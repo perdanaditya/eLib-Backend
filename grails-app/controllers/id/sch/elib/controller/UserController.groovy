@@ -45,11 +45,18 @@ class UserController {
     }
     
     def login(){
-        def output = ["message": "success"]
-
-        if (!UserService.login(request.JSON)) {
-            output = ["message": "failed"]
+        //        def output = ["message": "success"]
+        //
+        //        if (!UserService.login(request.JSON)) {
+        //            output = ["message": "failed"]
+        //        }
+        def output = UserService.login(request.JSON)
+        if(output!=null){
+            println "NOT NULL"
+            render output as JSON
+        }else{
+            println "USER NULL, UNAUTHORIZED"
+            response.status = 401;
         }
-        render output as JSON
     }
 }
