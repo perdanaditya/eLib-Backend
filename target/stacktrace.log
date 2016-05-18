@@ -3229,3 +3229,200 @@ insert into pengguna (idPengguna, version, active, alamat, input_time, jabatan, 
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
 	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:23:44,766 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+grails.validation.ValidationException: Validation Error(s) occurred during save():
+
+- Field error in object 'id.sch.elib.model.Role' on field 'roleName': rejected value [ADMIN_ROLE]; codes [id.sch.elib.model.Role.roleName.unique.error.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.error.roleName,id.sch.elib.model.Role.roleName.unique.error.java.lang.String,id.sch.elib.model.Role.roleName.unique.error,role.roleName.unique.error.id.sch.elib.model.Role.roleName,role.roleName.unique.error.roleName,role.roleName.unique.error.java.lang.String,role.roleName.unique.error,id.sch.elib.model.Role.roleName.unique.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.roleName,id.sch.elib.model.Role.roleName.unique.java.lang.String,id.sch.elib.model.Role.roleName.unique,role.roleName.unique.id.sch.elib.model.Role.roleName,role.roleName.unique.roleName,role.roleName.unique.java.lang.String,role.roleName.unique,unique.id.sch.elib.model.Role.roleName,unique.roleName,unique.java.lang.String,unique]; arguments [roleName,class id.sch.elib.model.Role,ADMIN_ROLE]; default message [Property [{0}] of class [{1}] with value [{2}] must be unique]
+
+	at org.codehaus.groovy.grails.orm.hibernate.metaclass.AbstractSavePersistentMethod.doInvokeInternal(AbstractSavePersistentMethod.java:190)
+	at org.codehaus.groovy.grails.orm.hibernate.metaclass.AbstractDynamicPersistentMethod.invoke(AbstractDynamicPersistentMethod.java:63)
+	at org.codehaus.groovy.grails.orm.hibernate.HibernateGormInstanceApi.save(HibernateGormInstanceApi.groovy:195)
+	at id.sch.elib.model.Role.save(Role.groovy)
+	at id.sch.elib.model.Role$save.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at BootStrap$_closure1.doCall(BootStrap.groovy:116)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springsource.loaded.ri.ReflectiveInterceptor.jlrMethodInvoke(ReflectiveInterceptor.java:1254)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1086)
+	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1110)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:910)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:960)
+	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1110)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:910)
+	at groovy.lang.Closure.call(Closure.java:411)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at org.codehaus.groovy.grails.commons.DefaultGrailsBootstrapClass.callInit(DefaultGrailsBootstrapClass.java:60)
+	at org.codehaus.groovy.grails.web.context.GrailsConfigUtils.executeGrailsBootstraps(GrailsConfigUtils.java:75)
+	at org.codehaus.groovy.grails.web.context.GrailsContextLoader.initWebApplicationContext(GrailsContextLoader.java:109)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:112)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4961)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5455)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:23:44,773 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+grails.validation.ValidationException: Validation Error(s) occurred during save():
+
+- Field error in object 'id.sch.elib.model.Role' on field 'roleName': rejected value [ADMIN_ROLE]; codes [id.sch.elib.model.Role.roleName.unique.error.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.error.roleName,id.sch.elib.model.Role.roleName.unique.error.java.lang.String,id.sch.elib.model.Role.roleName.unique.error,role.roleName.unique.error.id.sch.elib.model.Role.roleName,role.roleName.unique.error.roleName,role.roleName.unique.error.java.lang.String,role.roleName.unique.error,id.sch.elib.model.Role.roleName.unique.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.roleName,id.sch.elib.model.Role.roleName.unique.java.lang.String,id.sch.elib.model.Role.roleName.unique,role.roleName.unique.id.sch.elib.model.Role.roleName,role.roleName.unique.roleName,role.roleName.unique.java.lang.String,role.roleName.unique,unique.id.sch.elib.model.Role.roleName,unique.roleName,unique.java.lang.String,unique]; arguments [roleName,class id.sch.elib.model.Role,ADMIN_ROLE]; default message [Property [{0}] of class [{1}] with value [{2}] must be unique]
+
+	at BootStrap$_closure1.doCall(BootStrap.groovy:116)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:23:44,773 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+grails.validation.ValidationException: Validation Error(s) occurred during save():
+
+- Field error in object 'id.sch.elib.model.Role' on field 'roleName': rejected value [ADMIN_ROLE]; codes [id.sch.elib.model.Role.roleName.unique.error.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.error.roleName,id.sch.elib.model.Role.roleName.unique.error.java.lang.String,id.sch.elib.model.Role.roleName.unique.error,role.roleName.unique.error.id.sch.elib.model.Role.roleName,role.roleName.unique.error.roleName,role.roleName.unique.error.java.lang.String,role.roleName.unique.error,id.sch.elib.model.Role.roleName.unique.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.roleName,id.sch.elib.model.Role.roleName.unique.java.lang.String,id.sch.elib.model.Role.roleName.unique,role.roleName.unique.id.sch.elib.model.Role.roleName,role.roleName.unique.roleName,role.roleName.unique.java.lang.String,role.roleName.unique,unique.id.sch.elib.model.Role.roleName,unique.roleName,unique.java.lang.String,unique]; arguments [roleName,class id.sch.elib.model.Role,ADMIN_ROLE]; default message [Property [{0}] of class [{1}] with value [{2}] must be unique]
+
+	at BootStrap$_closure1.doCall(BootStrap.groovy:116)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:23:44,774 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+grails.validation.ValidationException: Validation Error(s) occurred during save():
+
+- Field error in object 'id.sch.elib.model.Role' on field 'roleName': rejected value [ADMIN_ROLE]; codes [id.sch.elib.model.Role.roleName.unique.error.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.error.roleName,id.sch.elib.model.Role.roleName.unique.error.java.lang.String,id.sch.elib.model.Role.roleName.unique.error,role.roleName.unique.error.id.sch.elib.model.Role.roleName,role.roleName.unique.error.roleName,role.roleName.unique.error.java.lang.String,role.roleName.unique.error,id.sch.elib.model.Role.roleName.unique.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.roleName,id.sch.elib.model.Role.roleName.unique.java.lang.String,id.sch.elib.model.Role.roleName.unique,role.roleName.unique.id.sch.elib.model.Role.roleName,role.roleName.unique.roleName,role.roleName.unique.java.lang.String,role.roleName.unique,unique.id.sch.elib.model.Role.roleName,unique.roleName,unique.java.lang.String,unique]; arguments [roleName,class id.sch.elib.model.Role,ADMIN_ROLE]; default message [Property [{0}] of class [{1}] with value [{2}] must be unique]
+
+	at BootStrap$_closure1.doCall(BootStrap.groovy:116)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:23:44,794 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+grails.validation.ValidationException: Validation Error(s) occurred during save():
+
+- Field error in object 'id.sch.elib.model.Role' on field 'roleName': rejected value [ADMIN_ROLE]; codes [id.sch.elib.model.Role.roleName.unique.error.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.error.roleName,id.sch.elib.model.Role.roleName.unique.error.java.lang.String,id.sch.elib.model.Role.roleName.unique.error,role.roleName.unique.error.id.sch.elib.model.Role.roleName,role.roleName.unique.error.roleName,role.roleName.unique.error.java.lang.String,role.roleName.unique.error,id.sch.elib.model.Role.roleName.unique.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.roleName,id.sch.elib.model.Role.roleName.unique.java.lang.String,id.sch.elib.model.Role.roleName.unique,role.roleName.unique.id.sch.elib.model.Role.roleName,role.roleName.unique.roleName,role.roleName.unique.java.lang.String,role.roleName.unique,unique.id.sch.elib.model.Role.roleName,unique.roleName,unique.java.lang.String,unique]; arguments [roleName,class id.sch.elib.model.Role,ADMIN_ROLE]; default message [Property [{0}] of class [{1}] with value [{2}] must be unique]
+
+	at BootStrap$_closure1.doCall(BootStrap.groovy:116)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:23:44,794 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+grails.validation.ValidationException: Validation Error(s) occurred during save():
+
+- Field error in object 'id.sch.elib.model.Role' on field 'roleName': rejected value [ADMIN_ROLE]; codes [id.sch.elib.model.Role.roleName.unique.error.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.error.roleName,id.sch.elib.model.Role.roleName.unique.error.java.lang.String,id.sch.elib.model.Role.roleName.unique.error,role.roleName.unique.error.id.sch.elib.model.Role.roleName,role.roleName.unique.error.roleName,role.roleName.unique.error.java.lang.String,role.roleName.unique.error,id.sch.elib.model.Role.roleName.unique.id.sch.elib.model.Role.roleName,id.sch.elib.model.Role.roleName.unique.roleName,id.sch.elib.model.Role.roleName.unique.java.lang.String,id.sch.elib.model.Role.roleName.unique,role.roleName.unique.id.sch.elib.model.Role.roleName,role.roleName.unique.roleName,role.roleName.unique.java.lang.String,role.roleName.unique,unique.id.sch.elib.model.Role.roleName,unique.roleName,unique.java.lang.String,unique]; arguments [roleName,class id.sch.elib.model.Role,ADMIN_ROLE]; default message [Property [{0}] of class [{1}] with value [{2}] must be unique]
+
+	at BootStrap$_closure1.doCall(BootStrap.groovy:116)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:34:17,474 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+groovy.lang.MissingPropertyException: No such property: Holders for class: BootStrap
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.unwrap(ScriptBytecodeAdapter.java:50)
+	at org.codehaus.groovy.runtime.callsite.PogoGetPropertySite.getProperty(PogoGetPropertySite.java:49)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callGroovyObjectGetProperty(AbstractCallSite.java:231)
+	at BootStrap$_closure1.doCall(BootStrap.groovy:24)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springsource.loaded.ri.ReflectiveInterceptor.jlrMethodInvoke(ReflectiveInterceptor.java:1254)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:233)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1086)
+	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1110)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:910)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:960)
+	at groovy.lang.ExpandoMetaClass.invokeMethod(ExpandoMetaClass.java:1110)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:910)
+	at groovy.lang.Closure.call(Closure.java:411)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at org.codehaus.groovy.grails.commons.DefaultGrailsBootstrapClass.callInit(DefaultGrailsBootstrapClass.java:60)
+	at org.codehaus.groovy.grails.web.context.GrailsConfigUtils.executeGrailsBootstraps(GrailsConfigUtils.java:75)
+	at org.codehaus.groovy.grails.web.context.GrailsContextLoader.initWebApplicationContext(GrailsContextLoader.java:109)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:112)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4961)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5455)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:34:17,487 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+groovy.lang.MissingPropertyException: No such property: Holders for class: BootStrap
+	at BootStrap$_closure1.doCall(BootStrap.groovy:24)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:34:17,489 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+groovy.lang.MissingPropertyException: No such property: Holders for class: BootStrap
+	at BootStrap$_closure1.doCall(BootStrap.groovy:24)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:34:17,489 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+groovy.lang.MissingPropertyException: No such property: Holders for class: BootStrap
+	at BootStrap$_closure1.doCall(BootStrap.groovy:24)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:34:17,495 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+groovy.lang.MissingPropertyException: No such property: Holders for class: BootStrap
+	at BootStrap$_closure1.doCall(BootStrap.groovy:24)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-18 16:34:17,495 [localhost-startStop-1] ERROR StackTrace  - Full Stack Trace:
+groovy.lang.MissingPropertyException: No such property: Holders for class: BootStrap
+	at BootStrap$_closure1.doCall(BootStrap.groovy:24)
+	at grails.util.Environment.evaluateEnvironmentSpecificBlock(Environment.java:308)
+	at grails.util.Environment.executeForEnvironment(Environment.java:301)
+	at grails.util.Environment.executeForCurrentEnvironment(Environment.java:277)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
