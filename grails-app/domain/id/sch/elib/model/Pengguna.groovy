@@ -37,5 +37,6 @@ class Pengguna {
     
     static mapping = {
         id column: "idPengguna"
+        photo(sqlType: "longblob")
     }
 }
