@@ -14,7 +14,7 @@ class User {
     
     static belongsTo = [pengguna: Pengguna]
 //    static hasOne = [pengguna: Pengguna]
-    static hasMany = [userRole: UserRole, peminjaman: Peminjaman]
+    static hasMany = [userRole: UserRole, peminjaman: Peminjaman, pengunjung: Pengunjung]
     
     static constraints = {
         username(uniqe: true, blank: true, nullable: false)

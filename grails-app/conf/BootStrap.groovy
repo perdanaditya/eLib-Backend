@@ -19,7 +19,6 @@ import grails.util.Holders
 class BootStrap {
 
     def useBoostrap = false;
-    //Pengguna+Penerbit
     def init = { servletContext ->
         Timestamp now = new Timestamp(new Date().getTime())
         def config = Holders.config
