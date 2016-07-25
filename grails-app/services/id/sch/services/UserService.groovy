@@ -196,7 +196,7 @@ class UserService {
                             }
                         }
                         userRole.each{
-                            long urId = it.id
+                            long urId = it.role.id
                             def role = Role.createCriteria().list{
                                 createAlias('userRole', 'ur', CriteriaSpecification.LEFT_JOIN)
                                 eq("id",urId)
