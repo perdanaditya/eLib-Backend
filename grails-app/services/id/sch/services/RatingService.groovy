@@ -22,7 +22,6 @@ class RatingService {
     
     boolean update(Object obj) {
         def out = Rating.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.buku= obj.buku
             out.likeCount= obj.likeCount

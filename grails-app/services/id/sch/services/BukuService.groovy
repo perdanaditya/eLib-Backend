@@ -88,7 +88,6 @@ class BukuService {
     
     boolean update(Object obj) {
         def out = Buku.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.isbn= obj.isbn
             out.penerbit= Penerbit.get(obj.penerbit.id)

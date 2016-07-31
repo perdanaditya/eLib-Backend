@@ -29,7 +29,6 @@ class PenerbitService {
     
     boolean update(Object obj) {
         def out = Penerbit.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.namaPenerbit= obj.namaPenerbit
             out.alamatPenerbit= obj.alamatPenerbit

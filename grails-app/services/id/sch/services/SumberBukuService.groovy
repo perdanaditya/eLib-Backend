@@ -79,7 +79,6 @@ class SumberBukuService {
     
     boolean update(Object obj) {
         def out = SumberBuku.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.buku= Buku.get(obj.buku.id.toLong())
             out.pengguna= Pengguna.get(obj.pengguna.id.toLong())

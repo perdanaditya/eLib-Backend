@@ -25,7 +25,6 @@ class PengarangService {
     
     boolean update(Object obj) {
         def out = Pengarang.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.namaPengarang= obj.namaPengarang
             out.active= obj.active

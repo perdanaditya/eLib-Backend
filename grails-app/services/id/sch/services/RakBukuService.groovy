@@ -13,7 +13,7 @@ class RakBukuService {
     
     boolean save(Object obj) {
         RakBuku out = new RakBuku(
-            namaRak: obj.namaRak,
+            namaJenis: obj.namaJenis,
             noDdc: obj.noDdc,
             active: obj.active,
             userInput: obj.userInput,
@@ -26,9 +26,8 @@ class RakBukuService {
     
     boolean update(Object obj) {
         def out = RakBuku.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
-            out.namaRak= obj.namaRak
+            out.namaJenis= obj.namaJenis
             out.noDdc=obj.noDdc
             out.active=obj.active
             out.userInput=obj.userInput

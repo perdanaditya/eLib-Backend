@@ -53,7 +53,6 @@ class PeminjamanService {
                 //                it.put("denda", denda.get(0))
                 
                 long peminjamanId=it.user.id
-                println "USER ID "+peminjamanId
                 def user = User.createCriteria().list{
                     resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
                     eq("id",peminjamanId)
@@ -149,9 +148,7 @@ class PeminjamanService {
         String nomor=generateNoPinjam()
         def dendaList = Denda.findAll("from Denda order by tanggal asc")
         def singleDenda=dendaList.get(0)//perbaiki lagi cara pengambilan denda
-        println "NOMOR IN SAVE: "+nomor
         if(singleDenda!=null){
-            println "SINGLE DENDA ID "+singleDenda.id
             Peminjaman out = new Peminjaman(
                 noPeminjaman: nomor,
                 user: obj.user.id.toLong(),
@@ -201,7 +198,6 @@ class PeminjamanService {
             it.delete()
         }
         //update data peminjaman
-        println "INI UPDATE " + obj.id
         if(obj.noPeminjaman != null){
             out.noPeminjaman= obj.noPeminjaman
         }
@@ -271,8 +267,5 @@ class PeminjamanService {
             println out.errors.allErrors
             return false
         }
-//            return true//nanti diapus kalo ngetestnya udah selesai
-        //        return out.save(failOnError: true)
-        
     }
 }

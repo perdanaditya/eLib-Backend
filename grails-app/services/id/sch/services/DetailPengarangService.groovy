@@ -86,7 +86,6 @@ class DetailPengarangService {
     
     boolean update(Object obj) {
         def out = DetailPengarang.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.pengarang= Pengarang.get(obj.pengarang.id.toLong())
             out.buku= Buku.get(obj.buku.id.toLong())

@@ -25,7 +25,6 @@ def fetchList() {
     
     boolean update(Object obj) {
         def out = Denda.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.nominal= obj.nominal
             out.tanggal= obj.tanggal

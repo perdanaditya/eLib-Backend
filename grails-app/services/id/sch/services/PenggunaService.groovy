@@ -51,7 +51,6 @@ class PenggunaService {
     
     boolean update(Object obj) {
         def out = Pengguna.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.noInduk = obj.noInduk
             out.nama = obj.nama

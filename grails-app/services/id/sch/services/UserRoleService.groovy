@@ -59,7 +59,6 @@ class UserRoleService {
     
     boolean update(Object obj) {
         def out = UserRole.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.user= User.get(obj.user.id.toLong())
             out.role= Role.get(obj.role.id.toLong())

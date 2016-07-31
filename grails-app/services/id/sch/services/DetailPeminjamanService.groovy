@@ -28,7 +28,6 @@ class DetailPeminjamanService {
     
     boolean update(Object obj) {
         def out = DetailPeminjaman.findById(obj.id.toLong())
-        println "INI UPDATE" + obj.id
         if (out != null) {
             out.peminjaman= Peminjaman.get(obj.peminjaman.id.toLong())
             out.buku= Buku.get(obj.buku.id.toLong())

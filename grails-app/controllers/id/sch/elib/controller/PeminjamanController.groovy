@@ -82,7 +82,6 @@ class PeminjamanController {
                 }
                 
                 long peminjamanId=it.user.id
-                println "USER ID "+peminjamanId
                 def user = User.createCriteria().list{
                     resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
                     eq("id",peminjamanId)
@@ -170,10 +169,8 @@ class PeminjamanController {
     def fetchPeminjamanByUser(){
         def id = params.id.toLong()
         def user = User.findById(id)
-        println "USER ID "+id
         def peminjaman = Peminjaman.findByUserAndActive(user, true)
         if(peminjaman){
-            println "PEMINJAMAN ID "+peminjaman.id
             params.id = peminjaman.id
             show()
         }

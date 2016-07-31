@@ -98,7 +98,6 @@ class UserService {
     boolean update(Object obj) {
         def out = User.findById(obj.id.toLong())
         def penggunaObj = Pengguna.findById(obj.pengguna.id.toLong())
-        println "INI UPDATE" + obj.id + "PENGGUNA " + obj.pengguna.id
         if (out != null) {
             if(penggunaObj != null){
                 Timestamp now = new Timestamp(new Date().getTime())
@@ -160,7 +159,6 @@ class UserService {
             }
             if(renderSelected.size>0){
                 renderSelected.each{
-//                    println "USER ID "+it.id
                     def pId = it.id
                     def pengguna = Pengguna.createCriteria().list{
                         resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
