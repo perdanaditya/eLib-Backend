@@ -10,7 +10,7 @@ class Pengunjung {
     String userInput
     Timestamp inputTime
     
-    static belongsTo = [user: User]
+    static belongsTo = [pengguna: Pengguna]
     
     static constraints = {
     }
