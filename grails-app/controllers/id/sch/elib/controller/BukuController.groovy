@@ -4,13 +4,15 @@ import grails.converters.JSON;
 import id.sch.elib.model.Buku;
 import id.sch.services.BukuService;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+
 class BukuController {
 
-   static allowedMethods = [index: "GET", save: "POST", update: "PUT", delete: ["DELETE"], search: "POST", show: "GET"]
+    static allowedMethods = [index: "GET", save: "POST", update: "PUT", delete: ["DELETE"], search: "POST", show: "GET"]
     def BukuService
 
     def index() {
-        render BukuService.fetchList() as JSON
+        render BukuService.fetchList(false) as JSON
     }
 
     def save() {
@@ -38,5 +40,42 @@ class BukuController {
         Buku buku = Buku.findById(id.toLong())
 
         render buku as JSON
+    }
+    
+    def exportToExcel(){
+        def mode = params.mode
+        def tahun = params.tahun
+        
+        //kalo udah di build. block ini di uncomment
+        XSSFWorkbook workbook = bukuService.download(mode.toLong(), tahun.toLong())
+        
+        //write test file
+        try {
+            //kalo ada format khusus untuk filename, nanti filenamenya disesuaikan
+            String filename="document.xlsx"
+            //nanti pathnya diganti.
+            File fileToWrite = new File("./assets/"+filename)
+            if(fileToWrite.exists()){
+                fileToWrite.delete();
+            }
+            
+            //create new file
+            fileToWrite.createNewFile()
+            FileOutputStream out = new FileOutputStream(fileToWrite);
+            workbook.write(out);
+            out.close()
+            
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            response.setHeader("Content-disposition", "attachment;filename=Daftar Buku.xlsx")
+            response.outputStream << fileToWrite.bytes
+			
+        } catch (FileNotFoundException e) {
+            println "FileNotFoundException: "+e.getMessage()
+        } catch (IOException e) {
+            println "IOException: "+e.getMessage()
+        }
+        
+//        def output = ["message": "success"]
+//        render output as JSON
     }
 }

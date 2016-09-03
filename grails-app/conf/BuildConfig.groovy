@@ -53,6 +53,11 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         runtime 'mysql:mysql-connector-java:5.1.27'
         compile 'com.googlecode.json-simple:json-simple:1.1.1'
+        
+        //apache poi
+        compile 'org.apache.poi:poi:3.14'
+        compile 'org.apache.poi:poi-ooxml:3.14'
+        
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
         compile 'org.apache.chemistry.opencmis:chemistry-opencmis-commons-api:0.10.0', {
             excludes 'slf4j-api'

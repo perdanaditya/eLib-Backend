@@ -4,7 +4,16 @@ import grails.transaction.Transactional
 import id.sch.elib.model.Buku
 import id.sch.elib.model.Penerbit
 import id.sch.elib.model.RakBuku
+import id.sch.elib.model.SumberBuku
+import id.sch.elib.model.DetailPengarang
 import java.sql.Timestamp
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import org.apache.poi.xssf.usermodel.XSSFSheet
+import org.apache.poi.xssf.usermodel.XSSFRow
+import org.apache.poi.xssf.usermodel.XSSFCellStyle
+import org.apache.poi.xssf.usermodel.XSSFDataFormat
+import org.apache.poi.ss.usermodel.Cell
 
 import javax.persistence.criteria.CriteriaBuilder;
 import org.hibernate.criterion.CriteriaSpecification;
@@ -12,19 +21,19 @@ import org.hibernate.criterion.CriteriaSpecification;
 @Transactional
 class BukuService {
 
-    def fetchList() {
+    def fetchList(boolean active) {
         def c = Buku.createCriteria()
         def selected = c.list{
             resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
-//            createAlias "buku","b"
-//                
-//            if (params.status){
-//                ilike("status",'%'+params.status+'%')
-//            }
-//            if (params.penerimaan){
-//                eq("p.id", params.penerimaan.toLong())
-//            }
-//                
+            //            createAlias "buku","b"
+            //                
+            if (active){
+                eq("active",active)
+            }
+            //            if (params.penerimaan){
+            //                eq("p.id", params.penerimaan.toLong())
+            //            }
+            //                
             projections{
                 groupProperty("id","id")
                 groupProperty("isbn","isbn")
@@ -102,5 +111,128 @@ class BukuService {
             out.inputTime = new Timestamp(new java.util.Date().getTime())
         }
         return out.save(failOnError: true)
+    }
+    
+    def download(long mode, long tahun){
+        File file = new File("./Template/Laporan Daftar Buku.xlsx")
+
+        InputStream stream = new FileInputStream(file)
+        XSSFWorkbook workbook = new XSSFWorkbook(stream)
+        XSSFSheet sheet
+        
+        if(file.exists()){
+            def listBuku = fetchList(true)
+            int startReadCol = 1
+            int maxColumn = 11
+            int sampleRow = 12
+            int startInsertRow = sampleRow
+            if(listBuku.size()>0){
+                sheet = workbook.getSheet("BI");
+                if(sheet){
+                    //ambil style dan format sesuai sample row di template
+                    XSSFRow row = sheet.getRow(sampleRow);
+                    ArrayList<XSSFCellStyle> styleList = new ArrayList<>();
+                    
+                    for (int i = 0; i < maxColumn - startReadCol; i++) {//loop ambil style per cell
+                        XSSFCellStyle style = row.getCell((i + startReadCol)).getCellStyle()
+                        styleList.add(style)
+                    }
+
+                    //untuk menyisipkan (insert) row baru di block yang mau di generate
+                    int rows = sheet.getLastRowNum();
+                    sheet.shiftRows((startInsertRow), rows, listBuku.size() - 1);
+                    //di -1 karena row bagian benefit di template defaultnya 1
+                    
+                    listBuku.eachWithIndex{ it, index ->//loop row
+                        //isi row yang tadi sudah di sisipkan diatas
+                        row = sheet.createRow((startInsertRow + index));
+                        def singleBuku = Buku.get(it.id.toLong())
+                        ArrayList<String> itemList = (ArrayList<String>) toArrayBuku(singleBuku)
+                    
+                        for (int i = startReadCol; i < maxColumn; i++) {//ini loop buat column
+                            Cell cell = row.createCell(i);
+                            //isi masing masing cell dengan style dan value masing masing
+                            switch (i){
+                            case startReadCol: 
+                                //diisi nomor (auto increment)
+                                cell.setCellValue((index + 1) + ". ")
+                                break
+                            default:
+                                cell.setCellValue(itemList.get(i-startReadCol))
+                                break;
+                            }
+                            cell.setCellStyle(styleList.get(i - startReadCol));
+                        }
+                        
+                    }
+                }
+            }
+            for (int i = 0; i < maxColumn - startReadCol; i++) {
+                sheet.autoSizeColumn(i)
+            }
+        }
+        return workbook
+    }
+    
+    //method buat ngurutin data berdasarkan template excel
+    def toArrayBuku(Buku bukuParam){
+        //fetch pengarang by buku
+        def listPengarang = ""
+        def c = DetailPengarang.createCriteria()
+        def selected = c.list{
+            buku{
+                eq('id', bukuParam.id)
+            }
+            
+        }
+        def selectedData = selected.collect{
+            [
+                namaPengarang: it.pengarang.namaPengarang
+            ]
+        }
+        selectedData.eachWithIndex{ item, index ->
+            if(index==0){
+                listPengarang = item.namaPengarang
+            }else{
+                listPengarang = listPengarang+", "+item.namaPengarang
+            }
+        }
+        
+        //fetch sumber by buku
+        def listSumber = ""
+        c = SumberBuku.createCriteria()
+        selected = c.list{
+            buku{
+                eq('id', bukuParam.id)
+            }
+            
+        }
+        
+        selectedData = selected.collect{
+            [
+                pengguna: (it.pengguna!=null? it.pengguna.nama:null),
+                namaPemberi: it.namaPemberi
+            ]
+        }
+        selectedData.eachWithIndex{ item, index ->
+            if(index==0){
+                listSumber = (item.pengguna!=null? item.pengguna:item.namaPemberi)
+            }else{
+                listSumber = listSumber+", "+(item.pengguna!=null? item.pengguna:item.namaPemberi)
+            }
+        }
+        
+        def arrayBuku = new ArrayList<String>();
+        arrayBuku.add("-")
+        arrayBuku.add(bukuParam.isbn)
+        arrayBuku.add(bukuParam.inputTime.toString())
+        arrayBuku.add(bukuParam.rakBuku.noDdc)
+        arrayBuku.add(listPengarang)
+        arrayBuku.add(bukuParam.judul)
+        arrayBuku.add(bukuParam.penerbit.namaPenerbit)
+        arrayBuku.add(bukuParam.tahunTerbit)
+        arrayBuku.add(listSumber)
+        arrayBuku.add(bukuParam.stock.toString())
+        return arrayBuku
     }
 }
