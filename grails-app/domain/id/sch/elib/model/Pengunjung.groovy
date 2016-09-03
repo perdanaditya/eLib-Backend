@@ -1,6 +1,6 @@
 package id.sch.elib.model
 
-import com.sun.jmx.snmp.Timestamp
+import java.sql.Timestamp
 
 class Pengunjung {
 
@@ -16,5 +16,6 @@ class Pengunjung {
     }
     static mapping = {
         id column: "idPengunjung"
+        sort inputTime: "asc"
     }
 }

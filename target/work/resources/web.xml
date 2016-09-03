@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="true" version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <display-name>/BackendTest-development-0.1</display-name>
+    <display-name>/BackendTest-production-0.1</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -9,7 +9,7 @@
 
     <context-param>
         <param-name>webAppRootKey</param-name>
-        <param-value>BackendTest-development-0.1</param-value>
+        <param-value>BackendTest-production-0.1</param-value>
     </context-param>
 <context-param>
 <param-name>sample</param-name>
@@ -34,11 +34,6 @@
 <param-name>adhoc</param-name>
 <param-value>true</param-value>
 </init-param>
-</filter>
-<filter>
-<filter-name>ResourcesDevModeFilter</filter-name>
-<filter-class>org.grails.plugin.resource.DevModeSanityFilter</filter-class>
-<async-supported>true</async-supported>
 </filter>
 
     <filter>
@@ -119,11 +114,6 @@
 <dispatcher>ERROR</dispatcher>
 </filter-mapping>
 <filter-mapping>
-<filter-name>ResourcesDevModeFilter</filter-name>
-<url-pattern>/*</url-pattern>
-<dispatcher>REQUEST</dispatcher>
-</filter-mapping>
-<filter-mapping>
         <filter-name>sitemesh</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
@@ -179,11 +169,6 @@
     <servlet>
         <servlet-name>gsp</servlet-name>
         <servlet-class>org.codehaus.groovy.grails.web.pages.GroovyPagesServlet</servlet-class>
-<init-param>
-<description>Allows developers to view the intermediate source code, when they pass a showSource argument in the URL.</description>
-<param-name>showSource</param-name>
-<param-value>1</param-value>
-</init-param>
     </servlet>
 <servlet>
 <servlet-name>grails-errorhandler</servlet-name>
