@@ -2,6 +2,10 @@ target/*
 target-eclipse/*
 *.db
 assets/*
+
+/*.xls
+/*.xlsx
+
 .settings/
 
 # .gitignore for Grails 1.2 and 1.3
