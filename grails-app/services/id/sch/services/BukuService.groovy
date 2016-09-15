@@ -21,7 +21,7 @@ import org.hibernate.criterion.CriteriaSpecification;
 @Transactional
 class BukuService {
 
-    def fetchList(boolean active) {
+    def fetchList(boolean active, long tahun) {
         def c = Buku.createCriteria()
         def selected = c.list{
             resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
@@ -30,9 +30,9 @@ class BukuService {
             if (active){
                 eq("active",active)
             }
-            //            if (params.penerimaan){
-            //                eq("p.id", params.penerimaan.toLong())
-            //            }
+            if (tahun != 0){
+                eq("tahunTerbit", tahun+"")
+            }
             //                
             projections{
                 groupProperty("id","id")
@@ -121,7 +121,7 @@ class BukuService {
         XSSFSheet sheet
         
         if(file.exists()){
-            def listBuku = fetchList(true)
+            def listBuku = fetchList(true, tahun)
             int startReadCol = 1
             int maxColumn = 11
             int sampleRow = 12
@@ -140,8 +140,10 @@ class BukuService {
 
                     //untuk menyisipkan (insert) row baru di block yang mau di generate
                     int rows = sheet.getLastRowNum();
-                    sheet.shiftRows((startInsertRow), rows, listBuku.size() - 1);
-                    //di -1 karena row bagian benefit di template defaultnya 1
+                    if(listBuku.size()>1){
+                        sheet.shiftRows((startInsertRow), rows, listBuku.size() - 1);
+                    }
+                    //di -1 karena row di template defaultnya 1
                     
                     listBuku.eachWithIndex{ it, index ->//loop row
                         //isi row yang tadi sudah di sisipkan diatas

@@ -12,7 +12,7 @@ class BukuController {
     def BukuService
 
     def index() {
-        render BukuService.fetchList(false) as JSON
+        render BukuService.fetchList(false, 0) as JSON
     }
 
     def save() {
@@ -45,15 +45,16 @@ class BukuController {
     def exportToExcel(){
         def mode = params.mode
         def tahun = params.tahun
-        
-        //kalo udah di build. block ini di uncomment
+        if (!tahun){
+            tahun = 0
+        }
+        println "MODE: "+mode
+        println "TAHUN: "+tahun
         XSSFWorkbook workbook = bukuService.download(mode.toLong(), tahun.toLong())
         
         //write test file
         try {
-            //kalo ada format khusus untuk filename, nanti filenamenya disesuaikan
             String filename="document.xlsx"
-            //nanti pathnya diganti.
             File fileToWrite = new File("./assets/"+filename)
             if(fileToWrite.exists()){
                 fileToWrite.delete();
